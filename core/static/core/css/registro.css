@@ -1,4 +1,6 @@
-
+body{
+    background-image: url("../img/pintura4.jpg");
+}
 .pad{
     margin-top: 5%;
     margin-bottom: 5%  
