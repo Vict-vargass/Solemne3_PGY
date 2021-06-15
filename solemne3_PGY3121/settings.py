@@ -55,7 +55,7 @@ ROOT_URLCONF = 'solemne3_PGY3121.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['solemne3_PGY3121/core/templates/core'],
+        'DIRS': ['core/templates/core'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
