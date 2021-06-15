@@ -16,24 +16,51 @@ $(document).ready(function(){
         var agregaInput3 = $('#rutPas')
         agregaInput3.html('<input type="text" name="" id="pasaporte" class="form-control" placeholder="Ingrese su pasaporte"  maxlength="20">')
     })
-    //CONJUNTO DE REMOVEDORES DE CLASE ALERT
-    $('#nombreCompleto').click(function(){
-        $('#nombreCompleto').removeClass("alert")
+    //CONJUNTO QUE REVISA SI HAY VALORES EN LOS CAMPOS Y AGRUEGA CLASE ALERT, SI TIENE VALOR ELIMINA ALERT
+    $('#nombreCompleto').blur(function(){
+        if($('#nombreCompleto').val()==""){
+            $('#nombreCompleto').addClass("alert")
+        }else{
+            $('#nombreCompleto').removeClass("alert")
+        }
     })
-    $('#email').click(function(){
-        $('#email').removeClass("alert")
+    $('#email').blur(function(){
+        if($('#email').val()==""){
+            $('#email').addClass("alert")
+        }
+        else{
+            $('#email').removeClass("alert")
+        }
     })
-    $('#rutPersona').click(function(){
-        $('#rutPersona').removeClass("alert")
+    $('#rutPersona').blur(function(){
+        if($('#rutPersona').val()==""){
+            $('#rutPersona').addClass("alert")
+        }else{
+            $('#rutPersona').removeClass("alert")
+        }
     })
-    $('#pasaporte').click(function(){
-        $('#pasaporte').removeClass("alert")
+    $('#pasaporte').blur(function(){
+        if($('#pasaporte').val()==""){
+            $('#pasaporte').addClass("alert")
+        }else{
+            $('#pasaporte').removeClass("alert")
+        }
     })
-    $('#ciudades').click(function(){
-        $('#ciudades').removeClass("alert")
+    $('#ciudades').blur(function(){
+        if($('#ciudades').val()==""){
+            $('#ciudades').addClass("alert")
+        }
+        else{
+            $('#ciudades').removeClass("alert")
+        }
     })
-    $('#textArea').click(function(){
-        $('#textArea').removeClass("alert")
+    $('#textArea').blur(function(){
+        if($('#textArea').val()==""){
+            $('#textArea').addClass("alert")
+        }
+        else{
+            $('#textArea').removeClass("alert")
+        }
     })//FIN CONJUNTO
     
     //ENVIAR Y VALIDAR EL FORMULARIO
@@ -68,17 +95,14 @@ $(document).ready(function(){
             mensaje.addClass('alert');
             event.preventDefault();
         }
-        else{
-            alert("El formulario a sido enviado con exito")
-            nombreCompleto.val("").removeClass("alert");
-            email.val("").removeClass("alert");
-            rut.val("").removeClass("alert");
-            pasaporte.val("").removeClass("alert");
-            ciudad.val(0).removeClass("alert");
-            mensaje.val("").removeClass("alert");
-        } 
+        //COMPRUEBA TODOS LOS CAMPOS Y PREVIENE EL ENVIO
+        if(nombreCompleto.val()=="" || email.val()=="" || rut.val()=="" || pasaporte.val()=="" || ciudad.val()=="" || mensaje.val()==""){
+            event.preventDefault();
+            existe==false
+        }else{
+            alert("Formulario enviado correctamente")
         }
-    )
+    })
     //LIMPIAR EL FORMULARIO
     $('#btnLimpiar').click(function(){
         var nombreCompleto=$('#nombreCompleto');
