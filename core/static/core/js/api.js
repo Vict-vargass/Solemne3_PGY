@@ -2,10 +2,43 @@ $(document).ready(function(){
     //INICIALIZA VARIABLE CONTENEDOR PARA USAR EMPTY
     var contenedor=$('#contenedor');
     contenedor.empty();
+    //VARIABLES
+    var nombreArtista="";
+    var tokenAsignado="";
+    //REVISA SI EL CAMPO ESTA COMPLETO, MANDA UNA ALERTA QUE MARCA EL CAMPO INCOMPLETO Y OTORGA EL VALOR A LA VARIABLE INICIALIZADA
+    $('#nombreArtista').blur(function(){
+        if ($('#nombreArtista').val()==""){
+            $('#nombreArtista').addClass('alerta');
+            $("#traerSpotify").prop('disabled', true);   
+        }else{
+            $('#nombreArtista').removeClass('alerta');
+            $("#traerSpotify").prop('disabled', false);
+            nombreArtista=$('#nombreArtista').val();
+        }
+    })
+    //REVISA SI EL CAMPO ESTA COMPLETO, MANDA UNA ALERTA QUE MARCA EL CAMPO INCOMPLETO Y OTORGA EL VALOR A LA VARIABLE INICIALIZADA
+    $('#token').blur(function(){
+        if($('#token').val()==""){
+            $('#token').addClass('alerta');
+            $("#traerSpotify").prop('disabled', true);
+        }else{
+            $('#token').removeClass('alerta');
+            $("#traerSpotify").prop('disabled', false);
+            tokenAsignado=$('#token').val();
+        }
+    })
+    //COMPRUEBA CAMPOS Y DESACTIVA BOTON SI ESTAN VACIOS
+    $('#traerSpotify').hover(function(){
+        if(tokenAsignado==""||nombreArtista==""){
+            $("#traerSpotify").prop('disabled', true);
+        }else{
+            $("#traerSpotify").prop('disabled', false);
+        }
+    })
     //TRAE API DE SPOTIFY
     $('#traerSpotify').click(function(){
-        var artista = $('#nombreArtista').val()
-        var token = $('#token').val()
+        artista=nombreArtista;
+        token=tokenAsignado;
         $.get({
             url: 'https://api.spotify.com/v1/artists/' + artista +'/albums',
             headers: {
@@ -27,9 +60,11 @@ $(document).ready(function(){
             }
         })
     })
+    //LIMPIA EL CAMPO NOMBRE, CLASES Y CONSERVA EL TOKEN
     $('#btnLimpiar').click(function(){
         contenedor.empty();
-         $('#nombreArtista').val("");
+         $('#nombreArtista').val("").removeClass('alerta');
+         $('#token').removeClass('alerta');
+         $("#traerSpotify").prop('disabled', false);
     })
 })//fin document ready{
-
