@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.deletion import CASCADE
 from django.db.models.fields import TextField
 
 # Create your models here.
@@ -26,6 +27,14 @@ class solicitudesContacto(models.Model):
     def __str__(self):
         return self.idSolicitud
 
+
+class CategoriaObras(models.Model):
+    id_categoria= models.IntegerField(primary_key=True, verbose_name="Id categoria")
+    nombreCategoria = models.CharField(max_length=20, verbose_name="Categoria obra")
+    
+    def __str__(self):
+        return self.nombreCategoria
+
 class obrasPublicadas(models.Model):
     idObra = models.IntegerField(primary_key=True,verbose_name="id obra")
     nombreObra = models.CharField(max_length=40, verbose_name="nombre obra")
@@ -43,5 +52,6 @@ class solicitudObra (models.Model):
     descripcion = models.TextField(max_length=1000, verbose_name="descripcion obra")
     precio= models.CharField(max_length=100, verbose_name="precio obra")
     tecnicaUsada = models.TextField(max_length=1000, verbose_name="tecnica usada obra")
+    categoria = models.ForeignKey(CategoriaObras, on_delete=models.CASCADE)
     def __str__(self):
-        return self.idSolicitudObra
+        return self.nombreObra
