@@ -26,6 +26,16 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'contacto' %}" target="_blank">Contacto</a>
           </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Más opciones
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{% url 'solicitud'%}" target="_blank">Solicitudes</a>
+              <a class="dropdown-item" href="{% url 'agregar' %}" target="_blank">Agregar obras</a>
+              <a class="dropdown-item" href="#">Borrar obra</a>
+              <a class="dropdown-item" href="#">Editar obra</a>
+          </li>
         </ul>
       </div>
 </nav>
