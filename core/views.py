@@ -1,5 +1,7 @@
-from django.shortcuts import render
-from .forms import registroUsuario
+from core.models import solicitudObra
+from django.shortcuts import redirect, render
+from .forms import registroUsuario, publicarObra
+from .models import solicitudObra
 
 # Create your views here.
 def home(request):
@@ -15,3 +17,22 @@ def registroUsuarios(request):
         if registo_usuario.is_valid:
             registo_usuario.save()
     return render(request, 'core/registro.html', datos)
+
+def solicitudes(request):
+    solicitud_obra = solicitudObra.objects.all()
+    datos = {
+        'solicitud': solicitud_obra
+    }
+    return render(request, 'core/solicitudesObras.html', datos)
+
+def add_obra(request):
+    datos = {
+        'form': publicarObra() 
+        }
+    if request.method == 'POST':
+        formulario_add = publicarObra(request.POST)
+        if formulario_add.is_valid:
+            formulario_add.save()
+
+    return render(request, 'core/crearSolicitudObra.html', datos)
+
