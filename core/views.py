@@ -1,6 +1,6 @@
 from core.models import solicitudObra
 from django.shortcuts import redirect, render
-from .forms import registroUsuario, publicarObra
+from .forms import registroUsuario, publicarObra, EditarObra
 from .models import solicitudObra
 
 # Create your views here.
@@ -35,4 +35,16 @@ def add_obra(request):
             formulario_add.save()
 
     return render(request, 'core/crearSolicitudObra.html', datos)
+
+
+def edit_obra(request, pk):
+    obra = solicitudObra.objects.get(idSolicitudObra = pk)
+    datos = {
+        'form': EditarObra(instance= obra) 
+        }
+    if request.method == 'POST':
+        formulario_edit = EditarObra(data=request.POST, instance= obra)
+        if formulario_edit.is_valid:
+            formulario_edit.save()
+    return render(request, 'core/editarSolicitud.html', datos)
 
