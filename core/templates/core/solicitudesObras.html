@@ -24,7 +24,7 @@
                      <td>{{ sol.categoria}}</td>
                      <td>{{ sol.precio }}</td>
                      <td>
-                        <a href="#" class="btn btn-primary">Editar</a>
+                        <a href="{% url 'editar_obra' sol.idSolicitudObra %}" class="btn btn-primary">Editar</a>
                         <a href="#" class="btn btn-danger">Eliminar</a>
                      </td>
                  </tr>
