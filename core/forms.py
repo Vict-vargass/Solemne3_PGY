@@ -47,3 +47,15 @@ class publicarObra(forms.ModelForm):
             'descripcion' : forms.Textarea(attrs={'class':'form-control','placeholder':'Ingrese una descripción'}),
             'tecnicaUsada' : forms.Textarea(attrs={'class':'form-control','placeholder':'Ingrese la tecnica empleada'})
         }
+ 
+class EditarObra(forms.ModelForm):
+
+    class Meta:
+        model = solicitudObra
+        fields = ['idSolicitudObra','nombreObra','historia','descripcion','precio','tecnicaUsada','categoria']
+        widgets={
+            'nombreObra': forms.TextInput(attrs={'class':'form-control','placeholder':'Ingrese el nombre de la obra'}),
+            'historia' : forms.Textarea(attrs={'class':'form-control','placeholder':'Ingrese la historia de la obra'}),
+            'descripcion' : forms.Textarea(attrs={'class':'form-control','placeholder':'Ingrese una descripción'}),
+            'tecnicaUsada' : forms.Textarea(attrs={'class':'form-control','placeholder':'Ingrese la tecnica empleada'})
+        }
