@@ -1,5 +1,6 @@
 body{
-    background-image: url("../img/pintura4.jpg");
+    background-image: url("../img/fondo3.jpg");
+    background-size: cover;
 }
 .pad{
     margin-top: 5%;
