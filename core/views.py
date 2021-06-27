@@ -60,6 +60,7 @@ def edit_obra(request, pk):
         formulario_edit = EditarObra(data=request.POST, instance= obra)
         if formulario_edit.is_valid:
             formulario_edit.save()
+            return redirect(to="listado")
     return render(request, 'core/editarObra.html', datos)
 
 def borrar_obra(request , pk):
